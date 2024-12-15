@@ -1,16 +1,14 @@
-"use client";
+'use client';
 
-import { login, signup } from "./actions";
-import { Box } from "@/components/ui/box";
-import { Button } from "@/app/ui/button";
-import { PrimaryButton } from "@/app/ui/styles/button.styles";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Button } from '@/app/ui/button';
+import { PrimaryButton } from '@/app/ui/styles/button.styles';
+import { Box } from '@/components/ui/box';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { login, signup } from './actions';
 
 export default function LoginPage() {
-  const [errorMessage, setErrorMessage] = useState<string | undefined | null>(
-    null,
-  );
+  const [errorMessage, setErrorMessage] = useState<string | undefined | null>(null);
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -25,42 +23,26 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-black">
-      <Box className="w-full max-w-md p-8 bg-gray-900 shadow-lg shadow-white/10 rounded-lg">
-        <form
-          method="post"
-          className="flex flex-col gap-4"
-          onSubmit={handleSubmit}
-        >
-          <Box className="flex flex-col gap-2">
-            <label htmlFor="email" className="text-white">
+    <div className='flex min-h-screen items-center justify-center bg-black'>
+      <Box className='w-full max-w-md p-8 bg-gray-900 shadow-lg shadow-white/10 rounded-lg'>
+        <form method='post' className='flex flex-col gap-4' onSubmit={handleSubmit}>
+          <Box className='flex flex-col gap-2'>
+            <label htmlFor='email' className='text-white'>
               Email:
             </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              className="p-2 text-gray-800 rounded"
-            />
+            <input id='email' name='email' type='email' required className='p-2 text-gray-800 rounded' />
           </Box>
-          <Box className="flex flex-col gap-2">
-            <label htmlFor="password" className="text-white">
+          <Box className='flex flex-col gap-2'>
+            <label htmlFor='password' className='text-white'>
               Password:
             </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              className="p-2 text-gray-800 rounded"
-            />
+            <input id='password' name='password' type='password' required className='p-2 text-gray-800 rounded' />
           </Box>
-          <Box className="flex justify-start gap-4">
-            <Button type="submit" className={PrimaryButton} formAction={login}>
+          <Box className='flex justify-start gap-4'>
+            <Button type='submit' className={PrimaryButton} formAction={login}>
               Log in
             </Button>
-            <Button type="submit" formAction={signup} className={PrimaryButton}>
+            <Button type='submit' formAction={signup} className={PrimaryButton}>
               Sign up
             </Button>
           </Box>
