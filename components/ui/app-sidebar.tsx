@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Moon, Search, Settings } from 'lucide-react';
+import { Calendar, Home, Inbox, Search, Settings } from 'lucide-react';
 
 import {
   Sidebar,
@@ -39,7 +39,6 @@ const items = [
     url: '#',
     icon: Settings,
   },
-  { title: 'Theme', url: '#', icon: Moon },
 ];
 
 export function AppSidebar() {
