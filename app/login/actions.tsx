@@ -1,23 +1,24 @@
-"use server";
+'use server';
 
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from '@/utils/supabase/server';
 
 export async function login(formData: FormData) {
   const supabase = await createClient();
 
-  console.log("login form date", formData);
+  console.log('login form date', formData);
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
+  // TODO: Add Zod validations
   const data = {
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
+    email: formData.get('email') as string,
+    password: formData.get('password') as string,
   };
-  console.log("Email:", data.email);
-  console.log("Password:", data.password);
+  console.log('Email:', data.email);
+  console.log('Password:', data.password);
   const { error } = await supabase.auth.signInWithPassword(data);
 
   //   if (error) {
@@ -33,17 +34,17 @@ export async function login(formData: FormData) {
     const { error } = await supabase.auth.signInWithPassword(data);
 
     if (error) {
-      console.error("Login error:", error.message);
+      console.error('Login error:', error.message);
       return { success: false, message: error.message };
     }
-    console.log("made it to revalidatePath");
-    revalidatePath("/", "layout");
-    return { success: true, redirectUrl: "/" };
+    console.log('made it to revalidatePath');
+    revalidatePath('/', 'layout');
+    return { success: true, redirectUrl: '/' };
   } catch (error) {
-    console.error("Unexpected login error:", error);
+    console.error('Unexpected login error:', error);
     return {
       success: false,
-      message: "Unexpected error occurred during login.",
+      message: 'Unexpected error occurred during login.',
     };
   }
 }
@@ -54,16 +55,16 @@ export async function signup(formData: FormData) {
   // type-casting here for convenience
   // in practice, you should validate your inputs
   const data = {
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
+    email: formData.get('email') as string,
+    password: formData.get('password') as string,
   };
 
   const { error } = await supabase.auth.signUp(data);
 
   if (error) {
-    redirect("/error");
+    redirect('/error');
   }
 
-  revalidatePath("/", "layout");
-  redirect("/");
+  revalidatePath('/', 'layout');
+  redirect('/');
 }

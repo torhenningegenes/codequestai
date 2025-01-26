@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { login, signup } from './actions';
 
 export default function LoginPage() {
+  // TODO: Show error message if something is wrong.
   const [errorMessage, setErrorMessage] = useState<string | undefined | null>(null);
   const router = useRouter();
 
