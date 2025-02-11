@@ -1,3 +1,4 @@
+import '@/app/ui/global.css';
 import { Button } from '@/components/ui/button';
 import { createClient } from '@/utils/supabase/server';
 

@@ -1,14 +1,12 @@
 'use client';
 
 import { Button } from '@/app/ui/button';
-import { PrimaryButton } from '@/app/ui/styles/button.styles';
 import { Box } from '@/components/ui/box';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { login, signup } from './actions';
 
 export default function LoginPage() {
-  // TODO: Show error message if something is wrong.
   const [errorMessage, setErrorMessage] = useState<string | undefined | null>(null);
   const router = useRouter();
 
@@ -19,7 +17,7 @@ export default function LoginPage() {
     if (result && !result.success) {
       setErrorMessage(result.message);
     } else if (result != undefined && result.success) {
-      router.push(result?.redirectUrl!);
+      router.push(result.redirectUrl!);
     }
   };
 
@@ -39,11 +37,12 @@ export default function LoginPage() {
             </label>
             <input id='password' name='password' type='password' required className='p-2 text-gray-800 rounded' />
           </Box>
+          {errorMessage && <p className='text-red-500'>{errorMessage}</p>}
           <Box className='flex justify-start gap-4'>
-            <Button type='submit' className={PrimaryButton} formAction={login}>
+            <Button type='submit' formAction={login}>
               Log in
             </Button>
-            <Button type='submit' formAction={signup} className={PrimaryButton}>
+            <Button type='submit' formAction={signup}>
               Sign up
             </Button>
           </Box>
