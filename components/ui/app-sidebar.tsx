@@ -1,5 +1,5 @@
 'use client';
-import { Calendar, Home, Inbox, Search, Settings } from 'lucide-react';
+import { BicepsFlexed, Home } from 'lucide-react';
 
 import {
   Sidebar,
@@ -12,52 +12,37 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { ModeToggle } from '@/components/ui/theme-selector';
+import Link from 'next/link';
 
 // Menu items.
 const items = [
   {
     title: 'Home',
-    url: '#',
+    url: '/',
     icon: Home,
   },
   {
-    title: 'Inbox',
-    url: '#',
-    icon: Inbox,
-  },
-  {
-    title: 'Calendar',
-    url: '#',
-    icon: Calendar,
-  },
-  {
-    title: 'Search',
-    url: '#',
-    icon: Search,
-  },
-  {
-    title: 'Settings',
-    url: '#',
-    icon: Settings,
+    title: 'Training',
+    url: '/training',
+    icon: BicepsFlexed,
   },
 ];
 
 export function AppSidebar() {
   return (
     <Sidebar>
-      <ModeToggle />
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Menu</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link href={item.url} itemID={item.title}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -65,6 +50,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <ModeToggle />
     </Sidebar>
   );
 }

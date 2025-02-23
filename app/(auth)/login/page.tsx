@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/app/ui/button';
 import { Box } from '@/components/ui/box';
+import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { login, signup } from './actions';
@@ -42,6 +42,7 @@ export default function LoginPage() {
             <Button type='submit' formAction={login}>
               Log in
             </Button>
+
             <Button type='submit' formAction={signup}>
               Sign up
             </Button>

@@ -4,40 +4,35 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { createClient } from '@/utils/supabase/server';
+import { z } from 'zod';
 
 export async function login(formData: FormData) {
   const supabase = await createClient();
 
   console.log('login form date', formData);
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  // TODO: Add Zod validations
-  const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-  };
-  console.log('Email:', data.email);
-  console.log('Password:', data.password);
-  const { error } = await supabase.auth.signInWithPassword(data);
+  const loginSchema = z.object({
+    email: z.string().email(),
+    password: z.string(),
+  });
 
-  //   if (error) {
-  //     console.error("error", error);
-  //     redirect("/error");
-  //   }
-  //
-  //   revalidatePath("/", "layout");
-  //   redirect("/");
-  // }
+  const data = {
+    email: formData.get('email'),
+    password: formData.get('password'),
+  };
 
   try {
-    const { error } = await supabase.auth.signInWithPassword(data);
+    // Validate the data with Zod
+    const validatedData = loginSchema.parse(data);
+
+    // Use the validated data to sign in
+    const { error } = await supabase.auth.signInWithPassword(validatedData);
 
     if (error) {
       console.error('Login error:', error.message);
       return { success: false, message: error.message };
     }
-    console.log('made it to revalidatePath');
+
     revalidatePath('/', 'layout');
     return { success: true, redirectUrl: '/' };
   } catch (error) {
@@ -52,14 +47,17 @@ export async function login(formData: FormData) {
 export async function signup(formData: FormData) {
   const supabase = await createClient();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-  };
+  const signUpSchema = z.object({
+    email: z.string().email(),
+    password: z.string(),
+  });
 
-  const { error } = await supabase.auth.signUp(data);
+  const data = {
+    email: formData.get('email'),
+    password: formData.get('password'),
+  };
+  const validatedData = signUpSchema.parse(data);
+  const { error } = await supabase.auth.signUp(validatedData);
 
   if (error) {
     redirect('/error');

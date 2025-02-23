@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/*html {*/
+/*  visibility: hidden;*/
+/*}*/
+
+/*html.light,*/
+/*html.dark {*/
+/*  visibility: visible;*/
+/*}*/
+
 input[type='number'] {
   -moz-appearance: textfield;
   appearance: textfield;
