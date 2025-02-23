@@ -12,8 +12,10 @@ export default function LoginPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const formData = new FormData(event.currentTarget);
     const result = await login(formData);
+
     if (result && !result.success) {
       setErrorMessage(result.message);
     } else if (result != undefined && result.success) {

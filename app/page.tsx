@@ -7,6 +7,7 @@ export default async function Page() {
   if (data?.user) {
     redirect('/home');
   }
+
   return (
     <div>
       <h1>Please Log In</h1>
