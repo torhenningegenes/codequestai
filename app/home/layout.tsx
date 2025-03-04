@@ -1,7 +1,7 @@
+import '@/app/ui/global.css';
 import { AppSidebar } from '@/components/ui/app-sidebar';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { ThemeProvider } from '@/components/ui/theme/theme-provider';
-import '@/global.css';
 import { ReactNode } from 'react';
 
 export default function HomeLayout({ children }: Readonly<{ children: ReactNode }>) {

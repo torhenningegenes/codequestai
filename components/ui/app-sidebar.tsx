@@ -23,7 +23,7 @@ const items = [
   },
   {
     title: 'Training',
-    url: '/training',
+    url: '/home/training',
     icon: BicepsFlexed,
   },
 ];

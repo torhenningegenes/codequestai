@@ -1,5 +1,5 @@
+import '@/app/ui/global.css';
 import { inter } from '@/fonts';
-import '@/global.css';
 import { ReactNode } from 'react';
 
 /*

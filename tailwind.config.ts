@@ -36,6 +36,10 @@ const config: Config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      borderColor: {
+        // This creates a utility class called "border-border"
+        border: 'var(--border)',
+      },
     },
     keyframes: {
       shimmer: {

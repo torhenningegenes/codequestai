@@ -2,6 +2,7 @@
 
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { login, signup } from './actions';
@@ -24,8 +25,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className='flex min-h-screen items-center justify-center bg-black'>
-      <Box className='w-full max-w-md p-8 bg-gray-900 shadow-lg shadow-white/10 rounded-lg'>
+    <div className='flex min-h-screen items-center justify-center bg-[hsl(224,71.4%,4.1%)]'>
+      <Card className='w-full max-w-md p-8  shadow-lg shadow-white/10 rounded-lg'>
         <form method='post' className='flex flex-col gap-4' onSubmit={handleSubmit}>
           <Box className='flex flex-col gap-2'>
             <label htmlFor='email' className='text-white'>
@@ -50,7 +51,7 @@ export default function LoginPage() {
             </Button>
           </Box>
         </form>
-      </Box>
+      </Card>
     </div>
   );
 }
