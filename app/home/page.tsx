@@ -7,7 +7,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 export default async function page() {
   return (
     <div className='flex min-h-screen flex-col items-center justify-center p-4 w-auto'>
-      <Card className='w-full'>
+      <Card>
         <CardHeader>
           <CardTitle>Welcome</CardTitle>
         </CardHeader>
