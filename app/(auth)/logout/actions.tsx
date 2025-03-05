@@ -6,18 +6,18 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 
 export async function signOut() {
-  console.debug('Sign out function called');
-  const supabase = await createClient();
+    console.debug('Sign out function called');
+    const supabase = await createClient();
 
-  const { error } = await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
 
-  if (error) {
-    console.error('error', error);
-    redirect('/error');
-  }
+    if (error) {
+        console.error('error', error);
+        redirect('/error');
+    }
 
-  revalidatePath('/', 'layout');
-  redirect('/');
+    revalidatePath('/', 'layout');
+    redirect('/');
 }
 
 //   try {
